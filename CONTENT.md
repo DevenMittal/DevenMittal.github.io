@@ -40,7 +40,7 @@ Archive content does not appear on the home page or in Monthly Builds. No depend
 
 ## Teaching, community, and organization marks
 
-CS 61B tutoring is confirmed by Deven; its dates are omitted pending confirmation. Codebase titles and dates were subsequently supplied in chat and are included below. LinkedIn blocked automated access. The CS 61B link points to the supplied coursework term, not a claim about the tutoring term.
+CS 61B tutoring is confirmed by Deven and is listed as Spring 2026. Codebase titles and dates were subsequently supplied in chat and are included below. LinkedIn blocked automated access. The CS 61B link points to the supplied coursework term, not a claim about the tutoring term.
 
 The logo pass now covers every experience entry, plus Codebase, Break Through Tech, UC Berkeley tutoring, and education. Assets are saved in `public/logos/`; see `ASSETS.md` for the exact sources. No third-party logo service or dependency was added. Organization names remain readable without images.
 
