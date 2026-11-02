@@ -31,31 +31,23 @@ h2, h3 { font-size: 1rem; }
 ul, ol { padding: 0; margin: 0; }
 .site-shell { width: min(100% - 2.75rem, 48rem); margin-inline: auto; }
 .site-header { padding-top: 4.5rem; }
+.header-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2rem; align-items: center; }
 .personal-header { display: flex; align-items: center; gap: 1.3rem; }
 .site-name { font-size: 1.75rem; letter-spacing: -0.04em; line-height: 1.3; font-weight: 600; color: var(--ink); }
 .site-name a { text-decoration: none; }
 .identity-note { font-size: 0.94rem; margin-top: 0.5rem; max-width: 32rem; color: var(--muted); }
 .headshot { width: 80px; height: 80px; object-fit: cover; border-radius: 50%; flex-shrink: 0; }
-.contact-links { list-style: none; display: flex; flex-wrap: wrap; gap: 0.35rem 1.2rem; margin-top: 0.8rem; font-size: 0.76rem; }
+.header-controls { display: grid; justify-items: end; }
+.contact-links { list-style: none; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.35rem 1.2rem; font-size: 0.76rem; }
 .contact-links a { display: inline-block; padding-block: 0.25rem; color: var(--muted); text-decoration: none; }
 .contact-links a:hover { color: var(--accent); text-decoration: underline; }
 .contact-links span { font-size: 0.75rem; color: var(--muted); }
-nav { margin-top: 1.75rem; }
-nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.15rem 1.15rem; }
+nav { margin-top: 2rem; padding-block: 0.7rem; border-block: 1px solid var(--line); }
+nav ul { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.15rem 1.6rem; }
 nav a { display: inline-block; padding-block: 0.3rem; font-size: 0.82rem; color: var(--body); text-decoration: none; }
 nav a[aria-current="page"] { color: var(--ink); text-decoration: underline; text-underline-offset: 0.45em; }
 main { padding-block: 2.75rem 3.5rem; min-height: 40vh; }
 main:focus { outline: none; }
-.home-overview { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(12rem, 0.65fr); gap: 1.5rem; padding: 1.25rem 0 1.4rem; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--line); }
-.home-overview-copy { padding-right: 1rem; }
-.home-overview-copy h2 { max-width: 24rem; margin-top: 0.55rem; font-size: clamp(1.35rem, 3vw, 1.9rem); letter-spacing: -0.035em; line-height: 1.2; }
-.home-overview-copy > p:last-child { max-width: 31rem; margin-top: 0.75rem; color: var(--muted); font-size: 0.9rem; }
-.home-overview-list { display: grid; gap: 0.65rem; align-content: center; }
-.home-overview-list > div { display: grid; grid-template-columns: 1.6rem minmax(0, 1fr); column-gap: 0.55rem; align-items: baseline; padding-bottom: 0.55rem; border-bottom: 1px solid var(--line); }
-.home-overview-list > div:last-child { border-bottom: 0; padding-bottom: 0; }
-.home-overview-list span { grid-row: span 2; font: 0.68rem/1.4 ui-monospace, "SFMono-Regular", Consolas, monospace; color: var(--accent); }
-.home-overview-list strong { color: var(--ink); font-size: 0.83rem; }
-.home-overview-list small { color: var(--muted); font-size: 0.72rem; }
 .skip-link { position: fixed; top: 0.75rem; left: 0.75rem; z-index: 10; padding: 0.5rem 1rem; background: var(--surface); transform: translateY(-200%); }
 .skip-link:focus { transform: translateY(0); }
 .section + .section { margin-top: 2.6rem; }
@@ -134,7 +126,11 @@ main:focus { outline: none; }
   .site-shell { width: min(100% - 2.5rem, 48rem); }
   .site-header { padding-top: 2.6rem; }
   .site-name { font-size: 1.65rem; }
-  nav ul { gap: 0.15rem 0.95rem; }
+  .header-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+  .header-controls { justify-items: start; }
+  .contact-links { justify-content: flex-start; }
+  nav { margin-top: 1.5rem; }
+  nav ul { justify-content: flex-start; gap: 0.15rem 0.95rem; }
   main { padding-top: 2.2rem; }
   .section + .section { margin-top: 2.2rem; }
   .project-heading, .resume-heading { flex-direction: column; gap: 0.2rem; }
@@ -143,8 +139,6 @@ main:focus { outline: none; }
   .has-headshot { gap: 1rem; align-items: flex-start; }
   .headshot { width: 64px; height: 64px; }
   .article-heading h1 { font-size: 1.5rem; }
-  .home-overview { grid-template-columns: 1fr; gap: 1.2rem; padding-block: 1.1rem 1.2rem; }
-  .home-overview-copy { padding-right: 0; }
 }
 
 .organization a, .education-entry h3 a { color: inherit; text-decoration: none; }

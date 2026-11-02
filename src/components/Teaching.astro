@@ -1,0 +1,10 @@
+---
+import { teaching, community } from '../data/resume';
+import ResumeEntry from './ResumeEntry.astro';
+---
+<section class="section" aria-labelledby="teaching-title">
+  <h2 class="section-label" id="teaching-title">Teaching &amp; community</h2>
+  <ol class="experience-list">
+    {[...teaching, ...community].map((entry) => <li><ResumeEntry {...entry} /></li>)}
+  </ol>
+</section>

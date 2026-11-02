@@ -1,0 +1,64 @@
+---
+import '../styles/global.css';
+import { site } from '../site';
+import { url } from '../lib/urls';
+import ContactLinks from '../components/ContactLinks.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  section?: 'home' | 'builds' | 'reading' | 'archive' | 'about';
+  home?: boolean;
+}
+
+const { title, description = site.description, section = 'home', home = false } = Astro.props;
+const NameTag = home ? 'h1' : 'p';
+const navigation = [
+  { label: 'Home', path: '', section: 'home' },
+  { label: 'Monthly Builds', path: 'builds/', section: 'builds' },
+  { label: 'Project Archive', path: 'archive/', section: 'archive' },
+  { label: 'Reading Log', path: 'reading/', section: 'reading' },
+  { label: 'About', path: 'about/', section: 'about' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="color-scheme" content="light" />
+    <title>{title ? `${title} · ${site.name}` : site.name}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="site-shell">
+      <header class="site-header">
+        <div class="header-grid">
+          <div class:list={['personal-header', { 'has-headshot': site.headshot }]}> 
+            {site.headshot && <img class="headshot" src={url(site.headshot)} alt="Deven Mittal" width="80" height="80" />}
+            <div>
+              <NameTag class="site-name">{home ? site.name : <a href={url()}>{site.name}</a>}</NameTag>
+              <p class="identity-note">{site.subtitle}</p>
+            </div>
+          </div>
+          <div class="header-controls">
+            <ContactLinks />
+          </div>
+        </div>
+        <nav aria-label="Main navigation">
+          <ul>
+            {navigation.map((item) => (
+              <li><a href={url(item.path)} aria-current={section === item.section ? 'page' : undefined}>{item.label}</a></li>
+            ))}
+          </ul>
+        </nav>
+      </header>
+      <main id="main" tabindex="-1"><slot /></main>
+      <footer class="site-footer">
+        <span>© {new Date().getUTCFullYear()} {site.name}</span>
+      </footer>
+    </div>
+  </body>
+</html>

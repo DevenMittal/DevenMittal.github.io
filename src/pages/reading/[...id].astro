@@ -1,0 +1,31 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import ResourceLinks from '../../components/ResourceLinks.astro';
+import { formatDate } from '../../lib/dates';
+import { url } from '../../lib/urls';
+
+export async function getStaticPaths() {
+  return (await getCollection('reading', ({ data }) => !data.placeholder)).map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+}
+
+interface Props { entry: CollectionEntry<'reading'>; }
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Base title={entry.data.title} description={entry.data.summary} section="reading">
+  <article>
+    <header class="page-heading article-heading">
+      <a class="back-link" href={url('reading/')}><span aria-hidden="true">←</span> Reading Log</a>
+      <div class="entry-meta">
+        <time datetime={entry.data.date.toISOString()}>{formatDate(entry.data.date)}</time>
+        <span>{entry.data.kind === 'note' ? 'Short note' : 'Longer post'}</span>
+      </div>
+      <h1>{entry.data.title}</h1>
+      <ResourceLinks links={[{ label: 'Paper', href: entry.data.paper }]} />
+    </header>
+    <div class="prose"><Content /></div>
+  </article>
+</Base>

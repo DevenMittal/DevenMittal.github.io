@@ -1,0 +1,11 @@
+---
+interface Props { links: { label: string; href: string }[]; }
+const { links } = Astro.props;
+const available = links.filter(({ href }) => href);
+---
+
+{available.length > 0 && <ul class="resource-links" aria-label="Resources">
+  {available.map(({ label, href }) => (
+    <li><a href={href}>{label} <span aria-hidden="true">↗</span></a></li>
+  ))}
+</ul>}

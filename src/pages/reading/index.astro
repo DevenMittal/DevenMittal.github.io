@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { formatDate } from '../../lib/dates';
+import { url } from '../../lib/urls';
+const entries = (await getCollection('reading', ({ data }) => !data.placeholder)).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<Base title="Reading Log" section="reading" description="I keep notes on the papers I read, from a few thoughts to longer posts.">
+  <header class="page-heading">
+    <h1>Reading Log</h1>
+    <p>I keep notes on the papers I read. Some are short; others need more room.</p>
+  </header>
+  <ol class="reading-list">
+    {entries.map((entry) => (
+      <li>
+        <article>
+          <div class="entry-meta">
+            <time datetime={entry.data.date.toISOString()}>{formatDate(entry.data.date)}</time>
+            <span>{entry.data.kind === 'note' ? 'Short note' : 'Longer post'}</span>
+          </div>
+          <h2><a href={url(`reading/${entry.id}/`)}>{entry.data.title}</a></h2>
+          <p>{entry.data.summary}</p>
+        </article>
+      </li>
+    ))}
+  </ol>
+  {entries.length === 0 && <p class="empty-note">I haven’t posted any paper notes yet.</p>}
+</Base>

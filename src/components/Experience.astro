@@ -1,0 +1,7 @@
+---
+import { experience } from '../data/resume';
+import ResumeEntry from './ResumeEntry.astro';
+---
+<ol class="experience-list">
+  {experience.map((entry) => <li><ResumeEntry {...entry} /></li>)}
+</ol>

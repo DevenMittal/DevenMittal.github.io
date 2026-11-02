@@ -1,0 +1,16 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import BuildEntry from '../../components/BuildEntry.astro';
+const builds = (await getCollection('builds')).sort((a, b) => b.data.month.localeCompare(a.data.month));
+---
+
+<Base title="Monthly Builds" section="builds" description="I’m starting a monthly project series. I’ll share what I build and what I learn.">
+  <header class="page-heading">
+    <h1>Monthly Builds</h1>
+    <p>I’m starting a monthly project series. I’ll share what I build, how it works, and what I learn along the way.</p>
+  </header>
+  <div class="build-list">
+    {builds.map((build) => <BuildEntry build={build} heading="h2" />)}
+  </div>
+</Base>

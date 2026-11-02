@@ -1,0 +1,35 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import ResourceLinks from '../../components/ResourceLinks.astro';
+import { formatMonth } from '../../lib/dates';
+import { url } from '../../lib/urls';
+
+export async function getStaticPaths() {
+  return (await getCollection('builds')).map((build) => ({ params: { id: build.id }, props: { build } }));
+}
+
+interface Props { build: CollectionEntry<'builds'>; }
+const { build } = Astro.props;
+const { Content } = await render(build);
+---
+
+<Base title={build.data.title} description={build.data.summary} section="builds">
+  <article>
+    <header class="page-heading article-heading">
+      <a class="back-link" href={url('builds/')}><span aria-hidden="true">←</span> Monthly Builds</a>
+      <div class="entry-meta">
+        <time datetime={build.data.month}>{formatMonth(build.data.month)}</time>
+        <span class="status"><span class="status-dot" aria-hidden="true"></span>{build.data.status === 'in-progress' ? 'In progress' : 'Complete'}</span>
+      </div>
+      <h1>{build.data.title}</h1>
+      <p>{build.data.summary}</p>
+      <ResourceLinks links={[
+        { label: 'Repository', href: build.data.repo },
+        { label: 'Writeup', href: build.data.writeup },
+      ]} />
+    </header>
+    <div class="prose"><Content /></div>
+  </article>
+</Base>

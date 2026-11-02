@@ -1,0 +1,23 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatMonth } from '../lib/dates';
+import { url } from '../lib/urls';
+
+interface Props { build: CollectionEntry<'builds'>; heading?: 'h2' | 'h3'; }
+const { build, heading: Heading = 'h3' } = Astro.props;
+---
+
+<article class="build-entry">
+  <div class="project-heading">
+    <Heading class="build-title"><a href={url(`builds/${build.id}/`)}>{build.data.title}</a></Heading>
+    <time class="entry-date" datetime={build.data.month}>{formatMonth(build.data.month)}</time>
+  </div>
+  <p>{build.data.summary}</p>
+  <div class="project-footer">
+    <ul class="tags" aria-label="Project topics">
+      <li class="status">{build.data.status === 'in-progress' ? 'In progress' : 'Complete'}</li>
+      {build.data.tags.map((tag) => <li>{tag}</li>)}
+    </ul>
+    <a class="text-link" href={url(`builds/${build.id}/`)}>Build notes <span aria-hidden="true">↗</span></a>
+  </div>
+</article>

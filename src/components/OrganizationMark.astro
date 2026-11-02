@@ -1,0 +1,7 @@
+---
+import { organizationLinks } from '../data/resume';
+import { url } from '../lib/urls';
+const { name } = Astro.props;
+const logo = organizationLinks[name]?.logo;
+---
+{logo && <span class="organization-mark" aria-hidden="true"><img class="organization-logo" src={url(logo)} alt="" width="28" height="28" loading="lazy" /></span>}

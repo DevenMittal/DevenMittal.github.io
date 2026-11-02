@@ -1,0 +1,24 @@
+---
+import { organizationLinks } from '../data/resume';
+import OrganizationMark from './OrganizationMark.astro';
+interface Props {
+  role: string;
+  organization: string;
+  dates?: string;
+  description?: string;
+  team?: string;
+  href?: string;
+}
+const { role, organization, dates, description, team, href = organizationLinks[organization]?.href } = Astro.props;
+---
+<article class="resume-entry">
+  <OrganizationMark name={organization} />
+  <div class="resume-entry-body">
+    <div class="entry-top">
+      <h3>{role}<span class="role-divider"> · </span><span class="entry-company">{href ? <a href={href}>{organization}</a> : organization}</span></h3>
+      {dates && <span class="entry-date">{dates}</span>}
+    </div>
+
+  </div>
+{(description || team) && <p class="entry-description">{team && <span class="team-inline">{team}. </span>}{description}</p>}
+</article>

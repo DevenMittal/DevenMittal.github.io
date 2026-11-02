@@ -1,0 +1,16 @@
+---
+import { site } from '../site';
+import { url } from '../lib/urls';
+const contacts = [
+  { label: 'Resume', href: site.resume ? (/^https?:\/\//.test(site.resume) ? site.resume : url(site.resume)) : '' },
+  { label: 'GitHub', href: site.github },
+  { label: 'LinkedIn', href: site.linkedin },
+  { label: 'Email', href: site.email ? `mailto:${site.email}` : '' },
+].filter(({ href }) => href);
+---
+
+{contacts.length > 0 && <ul class="contact-links" aria-label="Contact">
+  {contacts.map(({ label, href }) => (
+    <li><a href={href}>{label}{label !== 'Email' && <span aria-hidden="true"> ↗</span>}</a></li>
+  ))}
+</ul>}

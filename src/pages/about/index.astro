@@ -1,0 +1,25 @@
+---
+import Base from '../../layouts/Base.astro';
+import Experience from '../../components/Experience.astro';
+import Teaching from '../../components/Teaching.astro';
+import Education from '../../components/Education.astro';
+import { site } from '../../site';
+---
+
+<Base title="About" section="about">
+  <header class="page-heading"><h1>About</h1><p>{site.bio}</p></header>
+  <section class="section" aria-labelledby="research-title">
+    <h2 class="section-label" id="research-title">Research</h2>
+    <p>I’m interested in machine learning research. At Lawrence Berkeley National Laboratory, I work on distance-based graph neural network edge filters for particle tracking.</p>
+  </section>
+  <section class="section" aria-labelledby="experience-title">
+    <h2 class="section-label" id="experience-title">Experience</h2>
+    <Experience />
+  </section>
+  <Teaching />
+
+  <section class="section" aria-labelledby="education-title">
+    <h2 class="section-label" id="education-title">Education</h2>
+    <Education />
+  </section>
+</Base>

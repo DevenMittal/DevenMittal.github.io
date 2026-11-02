@@ -15,19 +15,6 @@ const reading = (await getCollection('reading', ({ data }) => !data.placeholder)
 ---
 
 <Base section="home" home>
-  <section class="home-overview" aria-labelledby="current-title">
-    <div class="home-overview-copy">
-      <p class="eyebrow">Currently</p>
-      <h2 id="current-title">I’m studying, researching, and building in public.</h2>
-      <p>{site.focus}</p>
-    </div>
-    <div class="home-overview-list" aria-label="Current areas">
-      <div><span>01</span><strong>Research</strong><small>Particle tracking at LBNL</small></div>
-      <div><span>02</span><strong>Builds</strong><small>One project each month</small></div>
-      <div><span>03</span><strong>Reading</strong><small>Notes on papers I finish</small></div>
-    </div>
-  </section>
-
   <section class="section" aria-labelledby="about-title">
     <h2 class="section-label" id="about-title">About</h2>
     <p class="about-copy">{site.bio}</p>

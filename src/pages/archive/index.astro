@@ -1,0 +1,33 @@
+---
+import Base from '../../layouts/Base.astro';
+import { archive, projectResources } from '../../data/resume';
+const projects = archive.filter((project) => project.title && project.description);
+const groups = [...new Set(projects.map((project) => project.group))];
+---
+
+<Base title="Project Archive" section="archive" description="I keep my earlier projects and team work here, separate from my monthly builds.">
+  <header class="page-heading">
+    <h1>Project Archive</h1>
+    <p>I keep my earlier projects and team work here, separate from my monthly builds.</p>
+    <p class="archive-context">These are learning projects with different levels of completeness. Some desktop demos require Windows or older MonoGame tooling. The repositories include demos, setup notes, and known limitations.</p>
+  </header>
+  {groups.map((group, index) => (
+    <section class="section archive-section" aria-labelledby={`archive-group-${index}`}>
+      <h2 class="section-label" id={`archive-group-${index}`}>{group}</h2>
+      <ul class="archive-list">
+        {projects.filter((project) => project.group === group).map((project) => (
+          <li>
+            <div class="project-heading">
+              <h3>{project.href ? <a href={project.href}>{project.title}<span aria-hidden="true"> ↗</span></a> : project.title}</h3>
+              {project.date && <span class="entry-date">{project.date}</span>}
+            </div>
+            {project.role && <p class="archive-role">{project.role}</p>}
+            <p>{project.description}</p>
+            {projectResources[project.title] && <ul class="resource-links" aria-label={`${project.title} resources`}>{projectResources[project.title].map((resource) => <li><a href={resource.href}>{resource.label}</a></li>)}</ul>}
+            <ul class="tags" aria-label="Project topics">{project.tags.map((tag) => <li>{tag}</li>)}</ul>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+</Base>
