@@ -1,0 +1,70 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import BuildEntry from '../components/BuildEntry.astro';
+import Experience from '../components/Experience.astro';
+import Teaching from '../components/Teaching.astro';
+import Education from '../components/Education.astro';
+import { site } from '../site';
+import { url } from '../lib/urls';
+import { formatDate } from '../lib/dates';
+
+const builds = (await getCollection('builds')).sort((a, b) => b.data.month.localeCompare(a.data.month));
+const reading = (await getCollection('reading', ({ data }) => !data.placeholder))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime()).slice(0, 3);
+---
+
+<Base section="home" home>
+  <section class="home-overview" aria-labelledby="current-title">
+    <div class="home-overview-copy">
+      <p class="eyebrow">Currently</p>
+      <h2 id="current-title">I’m studying, researching, and building in public.</h2>
+      <p>{site.focus}</p>
+    </div>
+    <div class="home-overview-list" aria-label="Current areas">
+      <div><span>01</span><strong>Research</strong><small>Particle tracking at LBNL</small></div>
+      <div><span>02</span><strong>Builds</strong><small>One project each month</small></div>
+      <div><span>03</span><strong>Reading</strong><small>Notes on papers I finish</small></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="about-title">
+    <h2 class="section-label" id="about-title">About</h2>
+    <p class="about-copy">{site.bio}</p>
+  </section>
+
+  <section class="section" aria-labelledby="builds-title">
+    <div class="section-heading">
+      <h2 class="section-label" id="builds-title">Monthly Builds</h2>
+      <a class="section-link" href={url('builds/')}>All builds <span aria-hidden="true">↗</span></a>
+    </div>
+    <p class="section-intro">I’m starting a monthly project series. I’ll share what I build and what I learn.</p>
+    {builds.slice(0, 2).map((build) => <BuildEntry build={build} />)}
+  </section>
+
+  <section class="section" aria-labelledby="experience-title">
+    <h2 class="section-label" id="experience-title">Experience</h2>
+    <Experience />
+  </section>
+
+  <Teaching />
+
+  <section class="section" aria-labelledby="education-title">
+    <h2 class="section-label" id="education-title">Education</h2>
+    <Education />
+  </section>
+
+  <section class="section" aria-labelledby="reading-title">
+    <div class="section-heading">
+      <h2 class="section-label" id="reading-title">Reading Log</h2>
+      <a class="section-link" href={url('reading/')}>All notes <span aria-hidden="true">↗</span></a>
+    </div>
+    {reading.length ? <ol class="reading-list">{reading.map((entry) => (
+      <li>
+        <h3><a href={url(`reading/${entry.id}/`)}>{entry.data.title}</a></h3>
+        <p class="entry-meta">{formatDate(entry.data.date)} · {entry.data.kind === 'note' ? 'Short note' : 'Longer post'}</p>
+        <p>{entry.data.summary}</p>
+      </li>
+    ))}</ol> : <p class="empty-note">I haven’t posted any paper notes yet.</p>}
+  </section>
+</Base>
