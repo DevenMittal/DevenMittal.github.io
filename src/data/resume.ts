@@ -185,7 +185,7 @@ export const archive = [
 
 // Titles confirmed by Deven. Dates are deliberately omitted until confirmed.
 export const teaching = [{
-  role: 'CS 61B Tutor', organization: 'UC Berkeley', dates: 'Spring 2026',
+  role: 'CS 61B Tutor', organization: 'UC Berkeley', dates: 'Jan - May 2026',
   href: 'https://sp25.datastructur.es/',
   description: 'I tutored CS 61B, Data Structures.',
 }];
