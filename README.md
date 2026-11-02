@@ -104,17 +104,15 @@ Use `kind: "note"` for a short entry or `kind: "post"` for a longer one. Both ge
 
 ## GitHub Pages deployment
 
-Nothing has been deployed. The included workflow runs only when manually requested, so a push does not publish the site.
+The site is configured as the `DevenMittal.github.io` user site. Pushes to `main` build and deploy it through GitHub Actions; the workflow can also be run manually from the Actions tab.
 
 When ready:
 
 1. Fill the placeholders in `CONTENT.md`.
-2. In `astro.config.mjs`, set `site` to `https://YOUR_GITHUB_USERNAME.github.io`.
-3. Set `base` to `/YOUR_REPOSITORY` for a project site. Use `/` for a repository named `YOUR_GITHUB_USERNAME.github.io`.
-4. Run `npm run build` and `npm run preview`. Check navigation and entry pages with that base path.
-5. Create a public GitHub repository for free Pages hosting, and push this source, including `package-lock.json` and `.github/workflows/deploy.yml`. Do not commit `node_modules/` or `dist/`.
-6. In the repository’s **Settings → Pages**, choose **GitHub Actions** as the source.
-7. In **Actions → Deploy to GitHub Pages**, choose **Run workflow**. The completed deployment shows the public URL. Repeat this manual run to publish later updates.
+2. Run `npm run build` and `npm run preview` locally when checking a change.
+3. Commit and push to `main`. GitHub Actions builds and publishes the static output.
+4. In the repository’s **Settings → Pages**, choose **GitHub Actions** as the source if GitHub has not selected it automatically.
+5. The completed workflow shows the public URL. Later content updates only require another commit and push.
 
 Reference: [Astro’s GitHub Pages guide](https://docs.astro.build/en/guides/deploy/github/). Internal navigation uses `src/lib/urls.ts` to preserve the configured base path.
 

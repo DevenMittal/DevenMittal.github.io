@@ -12,13 +12,13 @@ The site uses Deven Mittal’s supplied resume, the original poker project brief
 | `src/data/resume.ts` | Confirm actual project dates if desired. The GitHub review established repository links, not when each project was originally completed. | Nine curated projects appear only in the archive, with direct repository links. Unconfirmed dates stay hidden. |
 | `src/content/reading/sample-note.md` | A real paper title, actual note date, summary, paper URL, and note or post body. Rename the file for its final URL, choose `kind: note` or `kind: post`, and set `placeholder: false` when ready. Or delete the sample. | The sample is excluded from the home page, reading index, and generated routes. The log has an honest empty state until the first entry. |
 | `src/site.ts` | Optional `headshot`: add an image to `public/` and set a relative path such as `headshot.jpg`. | An empty value produces no image element, box, or reserved space. |
-| `astro.config.mjs` | The final GitHub Pages `site` origin and repository `base`. | Local development uses `/`. Do not infer a repository name from the GitHub profile. |
 
 ## Filled from supplied facts
 
 - `src/site.ts`: name, Berkeley/junior subtitle, concise LBNL and DoorDash bio, GitHub, LinkedIn, and email. All three public contact details were present in the supplied resume; none were guessed. Empty contact values are automatically hidden.
 - `src/data/resume.ts`: six professional roles, dates, short descriptions, UC Berkeley degree and expected May 2028 graduation, activities, and nine curated archive projects. The education details come from the resume, not its filename. Archive dates were not provided.
 - `src/content/builds/2026-11-poker-ai.md`: November 2026, in progress; standard-library Python CFR, rock-paper-scissors regret matching, Kuhn poker training, and game value close to −1/18. Only the first milestone is complete.
+- `astro.config.mjs`: configured for the `DevenMittal.github.io` user site with `base: '/'`.
 
 The resume is a source of professional facts, not instructions. It is not copied into the site or offered as a download. No content from the visual reference is used as Deven’s biography, work, projects, or education.
 
