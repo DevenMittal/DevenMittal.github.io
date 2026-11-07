@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Write · Deven Mittal</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#fafaf8;color:#222b27;font:16px/1.6 system-ui,sans-serif}main{max-width:900px;margin:48px auto;padding:0 24px}header{display:flex;justify-content:space-between;align-items:center}h1{font-size:28px}a{color:inherit}form{display:grid;gap:18px}label{display:grid;gap:6px;font-weight:600}input,select,textarea,button{font:inherit;border:1px solid #cbd2cb;border-radius:6px;padding:10px;background:white;color:inherit}textarea{min-height:280px;font-family:ui-monospace,monospace;font-size:14px}button{cursor:pointer;background:#254e3b;color:white}small,.hint{color:#58645e;font-weight:400}.row{display:grid;grid-template-columns:1fr 1fr;gap:18px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:white;padding:20px;border:1px solid #ddd}button.secondary{background:white;color:#254e3b}#message{min-height:24px}@media(max-width:600px){.row{grid-template-columns:1fr}main{margin:24px auto}}
+</style>
+<main>
+<header><h1>Write something</h1><a href="/">Back to site ↗</a></header>
+<p class="hint">Create a reading note or monthly build. Continue to GitHub to review and save it with your account. Saving to main automatically publishes the website.</p>
+<p><a href="https://github.com/DevenMittal/DevenMittal.github.io/tree/main/src/content">Edit an existing entry on GitHub ↗</a></p>
+<form id="editor">
+<label>Section<select id="section"><option value="reading">Reading Log</option><option value="builds">Monthly Builds</option></select></label>
+<label>Title<input id="title" required maxlength="180"></label>
+<div class="row"><label>Date<input id="date" type="date" required></label><label>URL name<input id="slug" required pattern="[a-z0-9]+(?:-[a-z0-9]+)*"><small>Lowercase words separated by hyphens.</small></label></div>
+<label>Summary<input id="summary" required></label>
+<label id="kind-label">Length<select id="kind"><option value="note">Short note</option><option value="post">Longer post</option></select></label>
+<label id="status-label" hidden>Status<select id="status"><option value="in-progress">In progress</option><option value="complete">Complete</option></select></label>
+<label id="paper-label">Paper URL<input id="paper" type="url"></label>
+<label id="repo-label" hidden>Repository URL<input id="repo" type="url"></label>
+<label id="writeup-label" hidden>External writeup URL<input id="writeup" type="url"></label>
+<label id="tags-label" hidden>Tags<input id="tags" placeholder="Python, Research"></label>
+<label>Body<textarea id="body" required placeholder="## My notes&#10;&#10;Write here. Markdown headings, links, lists, and code blocks work."></textarea></label>
+<small>Draft text is saved in this browser. Nothing is sent until you continue to GitHub. For images, upload a file to public/uploads in GitHub and use ![description](/uploads/filename.jpg).</small>
+<div class="row"><button type="submit">Continue to GitHub ↗</button><button type="button" class="secondary" id="download">Download Markdown</button></div>
+<p id="message" role="status"></p>
+<details><summary>Preview Markdown file</summary><pre id="preview"></pre></details>
+</form>
+</main>
+<script src="editor.js"></script>
+</html>
