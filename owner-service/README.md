@@ -5,7 +5,7 @@ The public Astro site remains on GitHub Pages. This Worker handles GitHub sign-i
 ## Setup
 
 1. Deploy worker.mjs as a Cloudflare Worker using the free plan. The configuration is in wrangler.toml. No runtime dependency is required.
-2. Register a GitHub App with the website URL https://devenmittal.github.io and callback URL https://YOUR-WORKER.workers.dev/callback. Disable user token expiration for this first implementation (sessions still expire after one hour). Request only repository Contents: read and write and Metadata: read. Install it on DevenMittal.github.io only. Do not enable device flow or webhooks.
+2. Register a GitHub App with the website URL https://devenmittal.github.io and callback URL https://YOUR-WORKER.workers.dev/callback. Keep user token expiration enabled. Sessions expire after one hour and require signing in again. Request only repository Contents: read and write and Metadata: read. Install it on DevenMittal.github.io only. Do not enable device flow or webhooks.
 3. Add the app client ID and client secret as GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET Worker secrets. Set SESSION_SECRET to a securely generated random value of at least 32 bytes. These must never be committed.
 4. Set serviceUrl in public/owner/config.json to the Worker HTTPS origin and deploy the site.
 5. Visit /?owner=1. Sign in, approve the app, edit a section, and publish. GitHub Actions rebuilds the public website.
