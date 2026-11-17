@@ -1,5 +1,6 @@
 // Personal details live here so navigation, metadata, and contact links stay in sync.
-export const site = {
+import overrides from './data/owner-overrides.json';
+const originalSite = {
   name: 'Deven Mittal',
   subtitle: 'Junior at UC Berkeley, interested in machine learning research.',
   description: 'I’m a junior at UC Berkeley, interested in machine learning research.',
@@ -14,3 +15,4 @@ export const site = {
   // Optional file in public/, e.g. 'headshot.jpg'. Empty means no image or box.
   headshot: 'headshot.jpg',
 };
+export const site = { ...originalSite, ...(overrides as {site?: Partial<typeof originalSite>}).site };

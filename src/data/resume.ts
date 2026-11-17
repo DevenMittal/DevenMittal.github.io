@@ -1,6 +1,7 @@
 // Public professional details supplied in Deven's resume, November 2026.
 // Do not add the source PDF, phone number, or private contact details to public/.
-export const experience = [
+import overrides from './owner-overrides.json';
+const originalExperience = [
   {
     role: 'Machine Learning Undergraduate Researcher',
     organization: 'Lawrence Berkeley National Laboratory',
@@ -45,7 +46,7 @@ export const experience = [
   },
 ].filter((entry) => entry.role && entry.organization && entry.description);
 
-export const education = {
+const originalEducation = {
   school: 'University of California, Berkeley',
   degree: 'B.S. in Electrical Engineering and Computer Sciences',
   dates: 'Expected May 2028',
@@ -54,7 +55,7 @@ export const education = {
 
 // Curated from the source and README review. Dates stay empty when unconfirmed.
 // Public team repositories keep their original ownership and explicit role credit.
-export const archive = [
+const originalArchive = [
   {
     title: 'Neural Network from Scratch',
     description: 'I implemented a feedforward network in C# with backpropagation. It includes an XOR console example and a separate Windows sine-wave visualizer.',
@@ -184,17 +185,26 @@ export const archive = [
 ];
 
 // Titles confirmed by Deven. Dates are deliberately omitted until confirmed.
-export const teaching = [{
+const originalTeaching = [{
   role: 'CS 61B Tutor', organization: 'UC Berkeley', dates: 'Jan - May 2026',
   href: 'https://sp25.datastructur.es/',
   description: 'I tutored CS 61B, Data Structures.',
 }];
-export const community = [
+const originalCommunity = [
   { role: 'VP of Projects', organization: 'Codebase', dates: 'Jun 2026 - Present', href: 'https://codebase.berkeley.edu/', description: 'I source client projects with Google, NVIDIA, and Sony and oversee four student developer teams.' },
   { role: 'Project Manager', organization: 'Codebase', dates: 'Jan - May 2026', href: 'https://github.com/diyahasteer/alloyfinance-ai', description: 'I managed the AlloyFinance AI team project with Google. I scoped work and broke down engineering tasks.' },
   { role: 'Software Developer', organization: 'Codebase', dates: 'Jan 2025 - Jan 2026', href: 'https://codebase.berkeley.edu/', description: '' },
   { role: 'Fellow', organization: 'Break Through Tech', dates: 'May 2025 - May 2026', href: 'https://www.breakthroughtech.org/', description: 'I completed machine learning coursework through Cornell University and worked on an industry-sponsored AI project with technical mentors.' },
 ];
+const edits = overrides as {
+  experience?: typeof originalExperience; education?: typeof originalEducation;
+  archive?: typeof originalArchive; teaching?: typeof originalTeaching; community?: typeof originalCommunity;
+};
+export const experience = edits.experience ?? originalExperience;
+export const education = edits.education ?? originalEducation;
+export const archive = edits.archive ?? originalArchive;
+export const teaching = edits.teaching ?? originalTeaching;
+export const community = edits.community ?? originalCommunity;
 export const organizationLinks: Record<string, { href: string; logo?: string }> = {
   'Lawrence Berkeley National Laboratory': { href: 'https://www.lbl.gov/', logo: 'logos/berkeley-lab.png' },
   DoorDash: { href: 'https://www.doordash.com/', logo: 'logos/doordash.ico' },

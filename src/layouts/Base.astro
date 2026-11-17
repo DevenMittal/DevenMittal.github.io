@@ -58,7 +58,9 @@ const navigation = [
       <main id="main" tabindex="-1"><slot /></main>
       <footer class="site-footer">
         <span>© {new Date().getUTCFullYear()} {site.name}</span>
+        <a href="/?owner=1" class="owner-entry">Owner mode</a>
       </footer>
     </div>
+    <script src="/owner/editor.js" is:inline defer></script>
   </body>
 </html>
