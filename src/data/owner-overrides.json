@@ -1,1 +1,14 @@
-{}
+{
+  "site": {
+    "name": "Deven Mittal",
+    "subtitle": "Junior at UC Berkeley, interested in machine learning research.",
+    "description": "I’m a junior at UC Berkeley, interested in machine learning research.",
+    "bio": "I work on machine learning for particle tracking at Lawrence Berkeley National Laboratory. Previously, I was a machine learning intern at DoorDash.",
+    "focus": "I’m focused on machine learning research and my first monthly build.",
+    "github": "https://github.com/DevenMittal",
+    "linkedin": "https://www.linkedin.com/in/deven-mittal/",
+    "email": "devenmittal@berkeley.edu",
+    "resume": "",
+    "headshot": "headshot.jpg"
+  }
+}
